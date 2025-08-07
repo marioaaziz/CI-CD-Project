@@ -1,2 +1,2 @@
 FROM nginx
-COPY frontend/ /usr/share/nginx/html
+COPY ./frontend/public /usr/share/nginx/html
