@@ -1,9 +1,7 @@
-FROM node:18
+FROM node:18 AS build
 WORKDIR /app
-COPY . .
-RUN npx create-react-app myapp && \
-    cd myapp && \
-    npm install && \
-    npm run build
-EXPOSE 3000
-CMD ["npx", "serve", "-s", "myapp/build"]
+COPY ./ ./
+RUN npm install && npm run build
+
+FROM nginx
+COPY --from=build /app/build /usr/share/nginx/html
