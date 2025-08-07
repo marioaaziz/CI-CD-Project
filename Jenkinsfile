@@ -3,19 +3,25 @@ pipeline {
 
   environment {
     SONARQUBE_SERVER = 'SonarQube'
+    SONAR_TOKEN = credentials('SONAR_TOKEN')  // You must create this in Jenkins Credentials
   }
 
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/YOUR_USERNAME/CICD-Project.git'
+        git 'https://github.com/marioaaziz/CI-CD-Project.git'
       }
     }
 
     stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv(SONARQUBE_SERVER) {
-          sh 'sonar-scanner -Dsonar.projectKey=devops-app -Dsonar.sources=.'
+          sh """
+            sonar-scanner \
+              -Dsonar.projectKey=devops-app \
+              -Dsonar.sources=. \
+              -Dsonar.token=$SONAR_TOKEN
+          """
         }
       }
     }
