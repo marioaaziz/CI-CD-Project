@@ -49,12 +49,6 @@ The app is accessible at:
 
 ---
 
-## 📸 Screenshots
-
-> Add your screenshots here using:
-> `![desc](img/screenshot.png)`
-
----
 
 ## 👨‍💻 Author
 
